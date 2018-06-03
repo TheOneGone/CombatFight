@@ -5,11 +5,13 @@ class FightFormInterface{
             let radioInterface = new RadioInterface(radio.name, radio.fields, formDOM, radio.className);
             this.radioIntrefaces.push(radioInterface);
         }
+
         let submitButton = document.createElement("input");
         submitButton.setAttribute("type", "submit");
         submitButton.setAttribute("value", submitButtonInfo.name);
         submitButton.setAttribute("class", submitButtonInfo.className);
         formDOM.appendChild(submitButton);
+        
         formDOM.onsubmit = (e) => {
             e.preventDefault();
             let submitData = {};
