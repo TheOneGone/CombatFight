@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <form class="fight-form"></form>
+    <script src="components/RadioInterface/radioInterface.js"></script>
+    <script src="components/FightFormInterface/FightFormInterface.js"></script>
+    <script>
+        let formDOM = document.querySelector(".fight-form");
+
+        let radios = [
+            {
+                name: "hit",
+                fields: {
+                    "Head": 0,
+                    "Body": 1,
+                    "Torso": 2,
+                    "Legs": 3
+                }
+            },
+            {
+                name: "block",
+                fields: {
+                    "Head, Body": 0,
+                    "Body, Torso": 1,
+                    "Torso, Legs": 2,
+                    "Legs, Head": 3
+                }
+            }
+        ];
+
+        let fightForm = new FightFormInterface(formDOM, radios, { name: "Send" }, (submitData) => {
+            alert("Hit: " + submitData.hit + "\nBlock: " + submitData.block[0] + ", " + submitData.block[1]);
+        });
+    </script>
+</body>
+</html>
