@@ -1,0 +1,22 @@
+{
+  "name": "login-example-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "random-hash": "^4.0.1"
+  },
+  "devDependencies": {
+    "chai": "^4.1.2",
+    "gemini": "^5.7.1",
+    "hermione": "^0.69.0",
+    "nodemon": "^1.17.4"
+  }
+}

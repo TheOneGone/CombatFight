@@ -1,0 +1,167 @@
+<html>
+<head>
+    <title>Логин</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="./components/bootstrap/dist/css/bootstrap.min.css">
+</script>
+</head>
+<body class="container">
+    <h1>Регистрация</h1>
+    <form role="form" class="form">
+        <div class="form-group">
+            <label for="exampleInputLogin1">Имя пользователя</label>
+            <input name="username" type="text" class="form-control username" id="exampleInputLogin1" placeholder="Например, admin">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword1">Пароль</label>
+            <input name="password" type="password" class="form-control password" id="exampleInputPassword1" placeholder="Например, ******">
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword2">Повторите пароль</label>
+            <input type="password" class="form-control password-repeat" id="exampleInputPassword2" placeholder="Угадайте, что введено наверху">
+        </div>
+        <button type="submit" class="btn btn-primary register-button">Регистрация</button>
+        <a href="/index.html" class="btn btn-default">Вернуться</button>
+    </form>
+    <script src="./components/jquery/dist/jquery.min.js"></script>
+    <script src="./components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script>
+        function generateError(text) {
+            var error = document.createElement('div');
+
+            error.className = 'invalid-feedback';
+            error.innerText = text;
+
+            return error;
+        }
+
+        function clearValidation(input) {
+            input.classList.remove('is-invalid');
+            input.classList.remove('is-valid');
+
+            while(input.nextElementSibling && input.nextElementSibling.classList.contains('invalid-feedback')) {
+                input.nextElementSibling.remove();
+            }
+        }
+
+        function validationEmpty(input) {
+            if (input.value.trim() === '') {
+                input.classList.add('is-invalid');
+
+                var error = generateError('Поле должно быть непустым');
+
+                input.parentElement.insertBefore(error, input.nextElementSibling)
+                return false;
+            }
+
+            return true;
+        }
+
+        function validationLength(input, min) {
+            if (input.value.trim().length < min) {
+                input.classList.add('is-invalid');
+
+                var error = generateError('В поле должно быть минимум ' + min + ' символов');
+
+                input.parentElement.insertBefore(error, input.nextElementSibling)
+                return false;
+            }
+
+            return true;
+        }
+
+        function validationWord(input) {
+            if (!/^\w+$/.test(input.value)) {
+                input.classList.add('is-invalid');
+
+                var error = generateError('В поле разрешены только символы английского алфавиты, цифры и символ подчеркивания');
+
+                input.parentElement.insertBefore(error, input.nextElementSibling)
+                return false;
+            }
+
+            return true;
+        }
+
+        function urlencodeFormData(fd) {
+            var s = '';
+            function encode(s) { return encodeURIComponent(s).replace(/%20/g, '+'); }
+            for (var pair of fd.entries()) {
+                if (typeof pair[1] == 'string') {
+                    s += (s ? '&' : '') + encode(pair[0]) + '=' + encode(pair[1]);
+                }
+            }
+            return s;
+        }
+
+        var form = document.querySelector('.form');
+
+        form.onsubmit = function(event) {
+            event.preventDefault();
+            var valid = true;
+
+            var username = document.querySelector('.username');
+            clearValidation(username);
+
+            if (validationEmpty(username) && validationLength(username, 3) && validationWord(username)) {
+                username.classList.add('is-valid');
+            } else {
+                valid = false;
+            }
+
+            var password = document.querySelector('.password');
+            clearValidation(password);
+
+            if (validationEmpty(password) && validationLength(password, 6)) {
+                password.classList.add('is-valid');
+            } else {
+                valid = false;
+            }
+
+            var repeatPassword = document.querySelector('.password-repeat');
+            clearValidation(repeatPassword);
+
+            if (repeatPassword.value === password.value) {
+                repeatPassword.classList.add('is-valid');
+            } else {
+                valid = false;
+
+                repeatPassword.classList.add('is-invalid');
+
+                const error = generateError('В поле разрешены только символы английского алфавиты, цифры и символ подчеркивания');
+
+                repeatPassword.parentElement.insertBefore(error, repeatPassword.nextElementSibling);
+            }
+
+            if (valid) {
+                var formData = new FormData(this);
+                fetch("/register", {
+                    method: "POST",
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    },
+                    body: urlencodeFormData(formData)
+                }).then(function(response) {
+                    if (response.status === 200) {
+                        return response.json();
+                    } else {
+                        return response.text().then(function(message){
+                            throw new Error(message);
+                        });
+                    }
+                }).then(function(json) {
+                    form.style.display = 'none';
+
+                    document.querySelector('h1').innerHTML = 'Вы успешно зарегистрированы, ' + json.username;
+                }).catch(function(e) {
+                    username.classList.add('is-invalid');
+
+                    var error = generateError(e.message);
+
+                    username.parentElement.insertBefore(error, username.nextElementSibling);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
