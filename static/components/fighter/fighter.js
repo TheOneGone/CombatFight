@@ -13,6 +13,7 @@ function FighterInfo (userInfoJSON) {
         a.innerText = this.userName;
         a.href = 'user.html?id=' + this.id;
         a.className = 'fighter'
+        a.setAttribute('data-id', this.id)
         return a;
     }
 }
