@@ -1,3 +1,14 @@
+/**
+ * Компонент авторизации
+ * @constructor
+ * @param {node} formDOM - Нода формы на странице
+ * @param {object} loginButtonInfo - Информация о стилях и имени кнопки логина
+ * @param {object} notMeButtonInfo - Информация о стилях и имени кнопки "not me"
+ * @param {object} registerButtonInfo - Информация о стилях и имени кнопки регистрации
+ * @param {function} loginCallback - Калбэк при логине
+ * @param {function} registerCallback - Калбэк при регистрации
+ * @param {function} successCallback - Калбэк при успешном прохождении логина или регистрации
+ */
 class AuthInterface {
     constructor (formDOM, loginButtonInfo, notMeButtonInfo, registerButtonInfo, inputInfo, loginCallback, registerCallback, successCallback) {
         let username = localStorage.getItem("username");
