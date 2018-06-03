@@ -8,5 +8,3 @@ function FighterInfo (userInfoJSON) {
     this.health = userInfo.health;
     this.token = userInfo.token;
 }
-
-var user = new FighterInfo(userInfoJSON);
