@@ -1,0 +1,36 @@
+Действия:
+  - Открыть консоль (Ctrl + Shift + I)
+  - Написать в ней user
+  - Нажать Enter
+Результат:
+  - FighterInfo {id: "WOBqSz", userName: "admin", lastActive: 1526211881735, health: 20, token: "1kj2bnkjbkb1324b"}
+  
+Действия:
+  - Написать в ней user.id
+  - Нажать Enter
+Результат:
+  - "WOBqSz"
+
+Действия:
+  - Написать в ней user.userName
+  - Нажать Enter
+Результат:
+  - "admin"
+
+Действия:
+  - Написать в ней user.lastActive
+  - Нажать Enter
+Результат:
+  - 1526211881735 
+
+Действия:
+  - Написать в ней user.health
+  - Нажать Enter
+Результат:
+  - 20
+  
+Действия:
+  - Написать в ней user.token
+  - Нажать Enter
+Результат:
+  - "1kj2bnkjbkb1324b"

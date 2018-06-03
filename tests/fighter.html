@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        userInfoJSON =  {
+            "id": "WOBqSz",
+            "username": "admin",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        };
+        userInfoJSON = JSON.stringify(userInfoJSON);
+    </script>
+    <script src="../static/components/fighter/fighter.js"></script>
+    <script>
+        var user = new FighterInfo(userInfoJSON);
+    </script>
+</body>
+</html>
