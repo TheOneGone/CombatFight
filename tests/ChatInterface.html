@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="chat-div"></div>
+    <script src="components/fighter/fighter.js"></script>
+    <script src="components/ChatInterface/ChatInterface.js"></script>
+    <script>
+        let messages = [
+            {
+                user: {
+                    username: "Azumiar",
+                    id: "123"
+                },
+                timestamp: 1221321312,
+                message: "it works!"
+            },
+            {
+                user: {
+                    username: "Test",
+                    id: "123sadasdas"
+                },
+                timestamp: 122132121312,
+                message: "Yay!!"
+            }
+        ];
+
+        let chatDiv = document.querySelector(".chat-div");
+        let chat = new ChatInterface(chatDiv, {
+            userClass: "username-span",
+            textClass: "text-span",
+            divClass: "chat-block"
+        });
+
+        chat.add(messages);
+    </script>
+</body>
+</html>
