@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="buttons"></div>
+    <script src="components/RadioInterface/radioInterface.js"></script>
+    <script>
+        let buttonsDiv = document.querySelector(".buttons");
+
+            let radioHit = new RadioInterface("hit", {
+                "Head": 0,
+                "Body": 1,
+                "Torso": 2,
+                "Legs": 3
+            }, buttonsDiv, "radio-hit");
+    </script>
+</body>
+</html>
