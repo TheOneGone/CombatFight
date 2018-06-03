@@ -12,6 +12,7 @@ function FighterInfo (userInfoJSON) {
         var a = document.createElement('a');
         a.innerText = this.userName;
         a.href = 'user.html?id=' + this.id;
+        a.className = 'fighter'
         return a;
     }
 }
