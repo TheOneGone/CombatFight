@@ -4,6 +4,7 @@ const app = express();
 const port = 3333;
 
 app.use(express.static('static'));
+app.use(express.static('tests'));
 app.use(bodyParser.urlencoded({ extended: true }));
 
 require('./routes')(app);
