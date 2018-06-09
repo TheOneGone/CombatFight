@@ -1,53 +1,61 @@
 function Online (node, newFighters) {
 
     this.fighters = newFighters;
-    this.fighters.sort(function (a, b) {
-        if (a.userName > b.userName) {
-            return 1;
-        }
-        if (a.userName < b.userName) {
-            return -1;
-        }
-        return 0;
-    })
+    this.fighters.sort(function (a, b) {return sortFighters(a, b) });
 
-    this.fighters.forEach((item) => {
-        node.appendChild(item.badget());
+    this.fighters.forEach(function (item) {
+        node.appendChild(item.badge());
     });
 
-    this.isChanged = function (newFighters) {
-        if (this.fighters.length != newFighters.length) {
-            return flase;
+    this.refresh = function (node, newFighters) {
+        var curFighters = this.fighters;
+        var newArrived = newFighters;
+
+        newArrived.sort(function (a, b) { return sortFighters(a, b) });
+
+        var newArrivedId = newArrived.map(function (val) {return val.id;});
+        for (var i = 0; i < curFighters.length; i++) {
+            if (!~newArrivedId.indexOf(curFighters[i].id)) {
+                curFighters.splice(i, 1);
+                node.children[i].remove();
+                i--;
+            }
         }
-        return true;
+        console.log(curFighters);
+
+        var curFightersId = curFighters.map(function (val) {return val.id;});
+        for (var i = 0; i < newArrived.length; i++) {
+            if (~curFightersId.indexOf(newArrived[i].id)) {
+                newArrived.splice(i, 1);
+                i--;
+            }
+        };
+        console.log(newArrived);
+
+        newArrived.forEach(function (item, i) {
+            end = false;
+            for (var j = 0; j < node.children.length; j++) {
+                if (item.userName <= node.children[j].innerText) {
+                    node.insertBefore(item.badge(), node.children[j]);
+                    break;
+                } else {
+                    end = true;
+                }
+            }
+            if (end) {
+                node.appendChild(item.badge());
+            }
+        });
+        this.fighters = curFighters.concat(newArrived).sort(function (a, b) { return sortFighters(a, b); });
+    };
+}
+
+function sortFighters (a, b) {
+    if (a.userName > b.userName) {
+        return 1;
     }
-
-    this.refresh = function (newFighters) {
-
-        var tmpFighters = newFighters;
-        tmpFighters.sort(function (a, b) {
-            if (a.userName > b.userName) {
-                return 1;
-            }
-            if (a.userName < b.userName) {
-                return -1;
-            }
-            return 0;
-        })
-
-        this.fighters.forEach((item, i) => {
-            if (item != tmpFighters[i]) {
-                this.fighters[i] = tmpFighters[i];
-            }
-        })
-
-        this.fighters.forEach((item, i) => {
-            if (node.children[i].innerText != item.userName) {
-                node.children[i].innerText = item.userName;
-                node.children[i].href = 'user.html?id=' + this.id;
-                node.children[i].className = 'fighter';
-                node.children[i].setAttribute('data-id', this.id);
-            }
-        })
+    if (a.userName < b.userName) {
+        return -1;
     }
+    return 0;
 }

@@ -5,9 +5,88 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .fighter {
+            display: block;
+        }
+    </style>
 </head>
 <body>
-    <
-    <script src="components/online/online.js"></script>
+    <div class="fighter-container"></div>
+    <script>
+        var list1 = [
+        {
+            "id": "SngASz",
+            "username": "losyash",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        },
+        {
+            "id": "WOBqSz",
+            "username": "admin",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        },
+        {
+            "id": "dfGrt4",
+            "username": "krosh",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        }
+        ]
+        var list2 = [
+        {
+            "id": "WOBqSz",
+            "username": "admin",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        },
+        {
+            "id": "SngASz",
+            "username": "losyash",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        },
+        {
+            "id": "dhtY73",
+            "username": "vupsen",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        },
+        {
+            "id": "cb24s8",
+            "username": "luntik",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        },
+        {
+            "id": "qOBq9H",
+            "username": "pupsen",
+            "last_active": 1526211881735,
+            "health": 20,
+            "token": "1kj2bnkjbkb1324b"
+        },
+        ]
+    </script>
+    <script src="../static/components/online/online.js"></script>
+    <script src="../static/components/fighter/fighter.js"></script>
+    <script>
+        var objs1 = list1.map(function (item) {
+            return new FighterInfo(JSON.stringify(item));
+        });
+        var objs2 = list2.map(function (item) {
+            return new FighterInfo(JSON.stringify(item));
+        });
+
+        var node = document.querySelector('.fighter-container');
+        var onlineList = new Online(node, objs1);
+    </script>
 </body>
 </html>
