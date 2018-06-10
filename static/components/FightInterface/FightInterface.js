@@ -12,8 +12,10 @@ class FightInterface {
         let enemyBar = document.createElement("div");
         enemyBarHolder.classList.add("health-bar-holder");
         enemyBarHolder.appendChild(enemyBar);
+        statusPnl.appendChild(userText);
+        statusPnl.appendChild(userBarHolder);
         statusPnl.appendChild(enemyText);
-        statusPnl.appendChild(enemyText);
+        statusPnl.appendChild(enemyBarHolder);
 
         let gameFinished = false;
 
