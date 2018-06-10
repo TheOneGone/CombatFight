@@ -10,6 +10,7 @@ class FightInterface {
         let enemyText = document.createElement("span");
         let enemyBarHolder = document.createElement("div");
         let enemyBar = document.createElement("div");
+        enemyBar.classList.add("health-bar");
         enemyBarHolder.classList.add("health-bar-holder");
         enemyBarHolder.appendChild(enemyBar);
         statusPnl.appendChild(userText);
