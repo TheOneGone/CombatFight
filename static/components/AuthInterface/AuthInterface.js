@@ -12,6 +12,7 @@
 class AuthInterface {
     constructor (formDOM, loginButtonInfo, notMeButtonInfo, registerButtonInfo, inputInfo, loginCallback, registerCallback, successCallback) {
         let username = localStorage.getItem("username");
+        
         let password = localStorage.getItem("password");
                 
         let errors = document.createElement("div");
@@ -22,29 +23,34 @@ class AuthInterface {
         usernameLabel.setAttribute("for", "username");
         usernameLabel.innerText = inputInfo.username.text;
         usernameLabel.setAttribute("class", inputInfo.username.className);
+        usernameLabel.setAttribute("class","username-form");
 
         let usernameInput = document.createElement("input");
         usernameInput.setAttribute("type", "text");
         usernameInput.setAttribute("id", "username");
-        usernameInput.setAttribute("class", inputInfo.username.className);
+        usernameInput.setAttribute("class", inputInfo.username.className + " inp1");
+        
 
         let passwordLabel = document.createElement("label");
         passwordLabel.setAttribute("for", "password");
         passwordLabel.innerText = inputInfo.password.text;
         passwordLabel.setAttribute("class", inputInfo.password.className);
+        passwordLabel.setAttribute("class","password-form");
 
         let passwordInput = document.createElement("input");
         passwordInput.setAttribute("type", "password");
         passwordInput.setAttribute("id", "password");
-        passwordInput.setAttribute("class", inputInfo.password.className);
+        passwordInput.setAttribute("class", inputInfo.password.className + " inp2");
 
         let loginButton = document.createElement("button");
         loginButton.setAttribute("class", loginButtonInfo.className);
+        loginButton.setAttribute("class", "login-button");
         loginButton.innerText = loginButtonInfo.text;
         setButtonClickHandler(loginButton, loginCallback);
 
         let registerButton = document.createElement("button");
         registerButton.setAttribute("class", registerButtonInfo.className);
+        registerButton.setAttribute("class", "registr-button");
         registerButton.innerText = registerButtonInfo.text;
         setButtonClickHandler(registerButton, registerCallback);
 

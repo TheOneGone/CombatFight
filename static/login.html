@@ -1,103 +1,109 @@
 <!DOCTYPE html>
 <html>
 <head>
+        <link rel="stylesheet" href="login.css">
 </head>
-<body>
-    <form class="auth-form"></form>
-    <script src="components/config/config.js"></script>
-    <script src="components/AuthInterface/AuthInterface.js"></script>
-    <script>
-        let formDOM = document.querySelector(".auth-form");
-        var lastPassword = null;
+<body class="background">
+    <header class="header">
+        <img src="files/logo.jpg" alt="logo" class="logo"> 
+    </header>
+    <div class="main-div">
+        <form class="auth-form position-inp"></form>
+        <script src="components/config/config.js"></script>
+        <script src="components/AuthInterface/AuthInterface.js"></script>
+        <script>
+            let formDOM = document.querySelector(".auth-form");
+            var lastPassword = null;
 
-        let auth = new AuthInterface(formDOM,
-            { text: "Login", className: "login-btn" },
-            { text: "Not Me", className: "notMe-btn" },
-            { text: "Register", className: "register-btn" },
-            {
-                username: {
-                    text: "Username",
-                    className: "username-label"
+            let auth = new AuthInterface(formDOM,
+                { text: "Login", className: "login-btn" },
+                { text: "Not Me", className: "notMe-btn" },
+                { text: "Register", className: "register-btn" },
+                {
+                    username: {
+                        text: "Username",
+                        className: "username-label"
+                    },
+                    password: {
+                        text: "Password",
+                        className: "password-label"
+                    }
                 },
-                password: {
-                    text: "Password",
-                    className: "password-label"
-                }
-            },
-            loginCallback,
-            registerCallback,
-            successCallback
-        );
+                loginCallback,
+                registerCallback,
+                successCallback
+            );
 
-        function loginCallback(submitData) {
-            return new Promise(function (res, rej) {
+            function loginCallback(submitData) {
+                return new Promise(function (res, rej) {
 
-                // console.log(submitData);
+                    // console.log(submitData);
 
-                lastPassword = submitData.password;
+                    lastPassword = submitData.password;
 
-                fetch(config.serverURL + 'login',
-                    {
-                        method: 'POST',
-                        headers: {
-                            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                        },
-                        body: 'username=' + submitData.username + '&password=' + submitData.password,
-                    })
-                    .then(function (response) {
-                        // console.log(response);
+                    fetch(config.serverURL + 'login',
+                        {
+                            method: 'POST',
+                            headers: {
+                                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                            },
+                            body: 'username=' + submitData.username + '&password=' + submitData.password,
+                        })
+                        .then(function (response) {
+                            // console.log(response);
 
-                        if (response.status !== 200) {
-                            rej([response.status + ': ' + response.statusText]);
-                        }
+                            if (response.status !== 200) {
+                                rej([response.status + ': ' + response.statusText]);
+                            }
 
-                        return response.json();
-                    }).then(function (fromJSON) {
-                        console.log('fromJSON:', fromJSON);
-                        res(fromJSON.user);
-                    });
-            });
-        }
+                            return response.json();
+                        }).then(function (fromJSON) {
+                            console.log('fromJSON:', fromJSON);
+                            res(fromJSON.user);
+                        });
+                });
+            }
 
-        function registerCallback(submitData) {
-            return new Promise(function (res, rej) {
+            function registerCallback(submitData) {
+                return new Promise(function (res, rej) {
 
-                // console.log(submitData);
+                    // console.log(submitData);
 
-                lastPassword = submitData.password;
+                    lastPassword = submitData.password;
 
-                fetch(config.serverURL + 'register',
-                    {
-                        method: 'POST',
-                        headers: {
-                            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
-                        },
-                        body: 'username=' + submitData.username + '&password=' + submitData.password,
-                    })
-                    .then(function (response) {
-                        // console.log(response);
+                    fetch(config.serverURL + 'register',
+                        {
+                            method: 'POST',
+                            headers: {
+                                "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                            },
+                            body: 'username=' + submitData.username + '&password=' + submitData.password,
+                        })
+                        .then(function (response) {
+                            // console.log(response);
 
-                        if (response.status !== 200) {
-                            rej([response.status + ': ' + response.statusText]);
-                        }
+                            if (response.status !== 200) {
+                                rej([response.status + ': ' + response.statusText]);
+                            }
 
-                        return response.json();
-                    }).then(function (fromJSON) {
-                        // console.log('fromJSON:', fromJSON);
-                        res(fromJSON.user);
-                    });
-            });
-        }
+                            return response.json();
+                        }).then(function (fromJSON) {
+                            // console.log('fromJSON:', fromJSON);
+                            res(fromJSON.user);
+                        });
+                });
+            }
 
-        function successCallback(user) {
-            console.log("Successefully logged in or registered");
-            localStorage.setItem("username", user.username);
-            localStorage.setItem("password", lastPassword);
-            localStorage.setItem("token", user.token);
-            console.log(user);
-            location.href = 'combat.html';
-        }
+            function successCallback(user) {
+                console.log("Successefully logged in or registered");
+                localStorage.setItem("username", user.username);
+                localStorage.setItem("password", lastPassword);
+                localStorage.setItem("token", user.token);
+                console.log(user);
+                location.href = 'combat.html';
+            }
 
-    </script>
+        </script>
+    </div>
 </body>
 </html>

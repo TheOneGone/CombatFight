@@ -10,6 +10,7 @@ class FightInterface {
 
         let inFight = document.createElement("div");
         let startFightButton = document.createElement("button");
+        startFightButton.setAttribute("class", "start-button");
         startFightButton.innerText = "Fight!";
         inFight.appendChild(startFightButton);
 
@@ -19,10 +20,12 @@ class FightInterface {
         gameFinishedDiv.appendChild(winnerText);
         let startNewGameButton = document.createElement("button");
         startNewGameButton.innerText = "Start new game";
+        startNewGameButton.setAttribute("class", "start-new-button");
         gameFinishedDiv.appendChild(startNewGameButton);
-
+        
         let loader = document.createElement("div");
         loader.innerText = "Loading...";
+        loader.setAttribute("class", "loading");
 
         let fightFormDiv = document.createElement("form");
         fightFormDiv.appendChild(statusPnl);
