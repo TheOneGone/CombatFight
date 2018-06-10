@@ -1,11 +1,12 @@
 class FightInterface {
-    constructor (fightDiv, fighter, startFightCallback, submitTurnCallback, gameEndedCallback) {
+    constructor (fightDiv, startFightCallback, submitTurnCallback, gameEndedCallback) {
         let statusPnl = document.createElement("div");
         let userText = document.createElement("span");
-        userText.innerText = fighter.userName + ":" + fighter.health;
         let enemyText = document.createElement("span");
         statusPnl.appendChild(userText);
         statusPnl.appendChild(enemyText);
+
+        let gameFinished = false;
 
         let inFight = document.createElement("div");
         let startFightButton = document.createElement("button");
@@ -50,18 +51,26 @@ class FightInterface {
         ];
 
         let fightFormInterface = new FightFormInterface(fightFormDiv, radios, {name: "Submit"}, (submitData) => {
+            if (gameFinished) return;
             fightDiv.innerHTML = "";
             fightDiv.appendChild(loader);
             submitTurnCallback (submitData, (status) => {
                 fightDiv.innerHTML = "";               
                 if (status.type == "finished") {
                     gameEndedCallback();
-                    winnerText.innerText = status.winner.userName + " won!";
+                    gameFinished = true;
+
+                    let winner = status.user.health <= 0 ? status.enemy : status.user;
+
+                    winnerText.innerText = winner.username + " won!";
+                    if(status.user.health == status.enemy.health) {
+                        winnerText.innerText = "Tie!";
+                    }
                     fightDiv.appendChild(gameFinishedDiv);
                     return;
                 }
-                userText.innerText = status.user.userName + ":" + status.user.health;
-                enemyText.innerText = status.enemy.userName + ":" + status.enemy.health;
+                userText.innerText = status.user.username + ":" + status.user.health;
+                enemyText.innerText = status.enemy.username + ":" + status.enemy.health;
                 fightDiv.appendChild(fightFormDiv);
             });
         });
@@ -69,10 +78,11 @@ class FightInterface {
         function startNewFight(){
             fightDiv.innerHTML = "";
             fightDiv.appendChild(loader);
-            startFightCallback(fighter, (status) => {
+            startFightCallback((status) => {
+                gameFinished = false;
                 fightFormInterface.reset();
-                userText.innerText = status.user.userName + ":" + status.user.health;
-                enemyText.innerText = status.enemy.userName + ":" + status.enemy.health;
+                userText.innerText = status.user.username + ":" + status.user.health;
+                enemyText.innerText = status.enemy.username + ":" + status.enemy.health;
                 fightDiv.innerHTML = "";
                 fightDiv.appendChild(fightFormDiv);
             });

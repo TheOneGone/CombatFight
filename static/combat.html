@@ -9,7 +9,7 @@
     </header>
     <div class="main-div">
         <div class="content">
-            <div class="fighter fight-wrapepr">
+            <div class="fighter fight-wraper">
                 
             </div>
                 
@@ -21,5 +21,88 @@
         <div class="online-list online">
         </div>
     </div>
+
+    <script src="components/DataProvider/DataProvider.js"></script>
+    <script src="components/fighter/fighter.js"></script>
+    <script src="components/RadioInterface/RadioInterface.js"></script>
+    <script src="components/FightFormInterface/FightFormInterface.js"></script>
+    <script src="components/FightInterface/FightInterface.js"></script>
+    <script>
+        let token = localStorage.getItem("token");
+        if (!token) {
+            window.location = "http://localhost:3334/login.html"
+        }
+
+        let fightDiv = document.querySelector(".fight-wraper");
+
+        let combat_id = localStorage.getItem("combat_id");
+
+        let fightInterface = new FightInterface(fightDiv, (next) => {
+            let headers = new Headers();
+            headers.append("Content-Type", "application/x-www-form-urlencoded");
+
+            if (combat_id) {
+                DataProvider("http://localhost:3333/status?token=" + token + "&combat_id=" + combat_id).on({
+                    combat: {
+                        turn_status: true
+                    }
+                }, (res) => {
+                    next({ type: res.combat.status, user: res.combat.you, enemy: res.combat.enemy });
+                }).on({
+                    combat: {
+                        status: "finished"
+                    }
+                }, (res) => {
+                    localStorage.removeItem("combat_id");
+                    combat_id = null;
+                    next({ type: res.combat.status, user: res.combat.you, enemy: res.combat.enemy });
+                });
+                return;
+            }
+
+            DataProvider("http://localhost:3333/fight", {
+                method: "POST",
+                body: "token=" + token,
+                headers: headers
+            }).on({}, (res) => {
+                combat_id = res.combat.id;
+                localStorage.setItem("combat_id", combat_id);
+                DataProvider("http://localhost:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
+                    combat: {
+                        enemy: {}
+                    }
+                }, (res) => {
+                    next({ user: res.combat.you, enemy: res.combat.enemy });
+                });
+            });
+        }, (submitData, next) => {
+            let headers = new Headers();
+            headers.append("Content-Type", "application/x-www-form-urlencoded");
+
+            DataProvider("http://localhost:3333/turn", {
+                method: "POST",
+                headers: headers,
+                body: "token=" + token + "&combat_id=" + combat_id + "&turn=" + JSON.stringify(submitData)
+            }).on({}, (res) => {
+                DataProvider("http://localhost:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
+                    combat: {
+                        turn_status: true
+                    }
+                }, (res) => {
+                    next({ type: res.combat.status, user: res.combat.you, enemy: res.combat.enemy });
+                }).on({
+                    combat: {
+                        status: "finished"
+                    }
+                }, (res) => {
+                    localStorage.removeItem("combat_id");
+                    combat_id = null;
+                    next({ type: res.combat.status, user: res.combat.you, enemy: res.combat.enemy });
+                });
+            });
+        }, () => {
+
+        });
+    </script>
 </body>
 </html>
