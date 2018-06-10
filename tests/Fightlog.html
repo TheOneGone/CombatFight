@@ -9,9 +9,17 @@
 </head>
 <body>
 
-    <div class="fightlog">
+    <div class="fightlog1">
             <p>Здесь когда-то был лог</p>
-        </div>
+    </div>
+
+    <div class="fightlog2">
+            <p>Здесь когда-то был лог</p>
+    </div>
+
+    <div class="fightlog3">
+            <p>Здесь когда-то был лог</p>
+    </div>
 
     <script src="components\Fightlog\Fightlog.js"></script>
     <script src="components\FightlogInterFace\FightlogInterFace.js"></script>
@@ -34,14 +42,12 @@
                 "health": 28
             }
         }`;
-    
-        
+         
         result = JSON.parse(strstr);
-    
-    
-    
-        let ans = new Fightlog(strstr);
-        alert(ans.sendmsg());
+        loghash = new Fightlog(strstr);
+        var fightlog = document.querySelector(".fightlog1");
+        var logmasage = new FightlogInterFace(fightlog);
+        logmasage.refresh(loghash);
     
         strstr = `{
             "id": "j582tS",
@@ -93,13 +99,11 @@
             }
         }`;
     
-        
         result = JSON.parse(strstr);
-    
-    
-    
-        ans = new Fightlog(strstr);
-        alert(ans.sendmsg());
+        loghash = new Fightlog(strstr);
+        fightlog = document.querySelector(".fightlog2");
+        logmasage = new FightlogInterFace(fightlog);
+        logmasage.refresh(loghash);
     
         strstr = `{
         "id": "j582tS",
@@ -213,20 +217,19 @@
     
         
         result = JSON.parse(strstr);
-    
-    
-    
-        ans = new Fightlog(strstr);
-        alert(ans.sendmsg());
-    
-        console.log(ans.pril_atack);
-        console.log(ans.pril_def);
-        console.log(ans.tagarr[0]);
-        console.log(ans.tagarr[0].orig);
-    
-        let fightlog = document.querySelector(".fightlog");
-        var logmasage = new FightlogInterFace(fightlog);
+        loghash = new Fightlog(strstr);
+        fightlog = document.querySelector(".fightlog3");
+        logmasage = new FightlogInterFace(fightlog);
         logmasage.refresh(loghash);
+      
+
+        console.log(loghash.pril_atack);
+        console.log(loghash.pril_def);
+        console.log(loghash.tagarr[0]);
+        console.log(loghash.tagarr[0].orig);
+        console.log(loghash.tagarr[0].targ);
+    
+        
     </script>
 </body>
 </html>

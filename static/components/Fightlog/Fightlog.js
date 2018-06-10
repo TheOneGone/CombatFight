@@ -51,10 +51,10 @@ class Fightlog{
                 }
                 this.massages.push(msg);
             }
-            return this.massages;
         }else{
-            return ["Раундов боя еще не было"];
+            this.massages.push("Раундов боя еще не было");
         }
+        return this.massages;
     };
     
     
