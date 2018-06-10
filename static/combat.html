@@ -27,7 +27,12 @@
     <script src="components/RadioInterface/RadioInterface.js"></script>
     <script src="components/FightFormInterface/FightFormInterface.js"></script>
     <script src="components/FightInterface/FightInterface.js"></script>
+    <script src="components/ChatInterface/ChatInterface.js"></script>
+    <script src="components/fighter/fighter.js"></script>
     <script>
+
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      fight      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
         let token = localStorage.getItem("token");
         if (!token) {
             window.location = "http://localhost:3334/login.html"
@@ -103,6 +108,56 @@
         }, () => {
 
         });
+
+        //!!!!!!!!!!!!!!!!!!      chat     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        var chat = document.querySelector(".chat");
+        var troubles = document.createElement('div');
+        var ChatInt = new ChatInterface(
+            chat,
+            {
+                userClass: 'messager', 
+                textClass: 'message', 
+                divClass: 'message-div'
+            },
+            function (msg, timestamp) {
+
+                return fetch(
+                    'http://localhost:3333/chat',
+                    {
+                        method: 'POST', 
+                        headers: {
+                            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                        },
+                        body: 'token=' + localStorage.getItem('token') + '&message=' + msg + '&timestamp=' + timestamp,
+                    })
+                        .then(function (res) {
+                            troubles.innerText = '!!!тут проблемы!!!'
+                            return res.json();
+                        })
+                        .then(function (json) {
+                            if (json.status === 'error') {
+                                troubles.innerText += json.message;
+                                chat.appendChild(troubles);
+                            }
+                        })
+            }
+        );
+        setInterval(function () {
+            var timestamp = ChatInt.getLatestTimestamp();
+            fetch('http://localhost:3333/chat?token=' + localStorage.getItem('token') + (timestamp ? '&timestamp=' + timestamp : ''))
+            .then(function (res) {
+                troubles.innerText = '!!!тут проблемы!!!'
+                return res.json();
+            }).then(function (json) {
+                if (json.status === 'error') {
+                    troubles.innerText += json.message;
+                    chat.appendChild(troubles);
+                }
+
+                ChatInt.add(json.chat);
+            })
+        }, 3000)
     </script>
 </body>
 </html>
