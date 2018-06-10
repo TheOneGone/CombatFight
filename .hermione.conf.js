@@ -1,7 +1,8 @@
 module.exports = {
+    gridUrl: 'http://localhost:4444/wd/hub',
     sets: {
         desktop: {
-            files: 'hermione/desktop'
+            files: 'hermione/'
         }
     },
 

@@ -5,7 +5,7 @@ describe('Сценарий боя', function () {
         return this.browser
             .url('http://localhost:3333/FightFormInterface.html');
     });
- 
+
     it('Выводит результат если выбрана верная последовательность',function () {
         const expectedText = 'Hit: 2\nBlock: 3, 4';
 
@@ -16,6 +16,6 @@ describe('Сценарий боя', function () {
             .alertText()
             .then(function (text) {
                 assert.equal(text, expectedText);
-            });           
+            });
     });
 });
