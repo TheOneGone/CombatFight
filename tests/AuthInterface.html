@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <form class="auth-form"></form>
+    <script src="components/AuthInterface/AuthInterface.js"></script>
+    <script>
+        let formDOM = document.querySelector(".auth-form");
+
+        let auth = new AuthInterface(formDOM, 
+                                    {text: "Login", className: "login-btn"}, 
+                                    {text: "Not Me", className: "notMe-btn"},
+                                    {text: "Register", className: "register-btn"},
+                                    {   username: {
+                                            text: "Username",
+                                            className: "username-label"
+                                        },
+                                        password: {
+                                            text: "Password",
+                                            className: "password-label"
+                                        }
+                                    },
+                                    (submitData) => {
+                                        console.log("Logging in...");
+                                        return new Promise((res, rej) => {
+                                            if(submitData.username == "crash") rej(["Test error!"]);
+                                            res({username: submitData.username, password: submitData.password});
+                                        });
+                                    }, (submitData) => {
+                                        console.log("Registering...");
+                                        return new Promise((res, rej) => {
+                                            if (submitData.username == "crash") rej(["Test error!"]);
+                                            res({ username: submitData.username, password: submitData.password });
+                                        });
+                                    }, (user) => {
+                                        console.log("Successefully logged in or registered");
+                                        localStorage.setItem("username", user.username);
+                                        localStorage.setItem("password", user.password);
+                                        console.log(user);
+                                    },);
+    </script>
+</body>
+</html>

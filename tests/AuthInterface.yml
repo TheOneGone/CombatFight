@@ -1,0 +1,53 @@
+Действия:
+  - в поле usernmae написать Test 
+  - в поле password написать 123
+  - открыть консоль (Ctrl + Shift + I)
+  - Нажать на кнопку Login
+Результат:
+  - Logging in...
+  - Successefully logged in or registered
+  - {username "Test", password "123"}
+Действия:
+  - нажать на кнопку register
+Результат:
+  - Registering...
+  - Successefully logged in or registered
+  - {username "Test", password "123"}
+Действия:
+  - Обновить станицу
+Результат:
+  - Появятся кнопки login и not me
+Действия:
+  - Нажать на кнопку логин
+Результат:
+  - Logging in...
+  - Successefully logged in or registered
+  - {username "Test", password "123"}
+Действия:
+  - Нажать на кнопку not me
+Результат:
+  - Появится форма
+Действия:
+  - В поле username ввести crash
+  - В поле password ввести 123
+  - нажать на кнопку login
+Результат:
+  - Появится текст Test error!
+  - В консоле появиться Logging in...
+Действия:
+  - нажать на кнопку register
+Результат:
+  - Появится текст Test error!
+  - В консоле появиться текст Registering...
+Действия:
+  - обновить страницу
+Результат:
+  - Появиться только форма
+Действия:
+  - Нажать на кнопку login
+Результат:
+  - Появиться текст Please fill in all the fields
+Действия:
+  - Нажать на кнопку register
+Результат:
+  - Ничего не изменится
