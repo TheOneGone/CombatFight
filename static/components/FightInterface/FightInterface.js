@@ -2,8 +2,17 @@ class FightInterface {
     constructor (fightDiv, startFightCallback, submitTurnCallback, gameEndedCallback) {
         let statusPnl = document.createElement("div");
         let userText = document.createElement("span");
+        let userBarHolder = document.createElement("div");
+        let userBar = document.createElement("div");
+        userBarHolder.classList.add("health-bar-holder");
+        userBarHolder.appendChild(userBar);
+        userBar.classList.add("health-bar");
         let enemyText = document.createElement("span");
-        statusPnl.appendChild(userText);
+        let enemyBarHolder = document.createElement("div");
+        let enemyBar = document.createElement("div");
+        enemyBarHolder.classList.add("health-bar-holder");
+        enemyBarHolder.appendChild(enemyBar);
+        statusPnl.appendChild(enemyText);
         statusPnl.appendChild(enemyText);
 
         let gameFinished = false;
@@ -69,8 +78,10 @@ class FightInterface {
                     fightDiv.appendChild(gameFinishedDiv);
                     return;
                 }
-                userText.innerText = status.user.username + ":" + status.user.health;
-                enemyText.innerText = status.enemy.username + ":" + status.enemy.health;
+                userText.innerText = status.user.username;
+                userBar.style.width = status.user.health / 30 * 100 + "%";
+                enemyText.innerText = status.enemy.username;
+                enemyBar.style.width = status.enemy.health / 30 * 100 + "%";
                 fightDiv.appendChild(fightFormDiv);
             });
         });
@@ -81,8 +92,10 @@ class FightInterface {
             startFightCallback((status) => {
                 gameFinished = false;
                 fightFormInterface.reset();
-                userText.innerText = status.user.username + ":" + status.user.health;
-                enemyText.innerText = status.enemy.username + ":" + status.enemy.health;
+                userText.innerText = status.user.username;
+                userBar.style.width = status.user.health / 30 * 100 + "%";
+                enemyText.innerText = status.enemy.username;
+                enemyBar.style.width = status.enemy.health / 30 * 100 + "%";
                 fightDiv.innerHTML = "";
                 fightDiv.appendChild(fightFormDiv);
             });
