@@ -1,6 +1,27 @@
 Действия:
-  - Нажать на текст Torso
-  - Нажать на текст Legs, Head
-  - Нажать на кнопку send
+  - Открыть консоль
+  - Нажать на кнопу Fight
 Результат:
-  - Вылетит alert с текстом Hit 2 Block 3, 4
+  - Появиться текст Loading...
+  - В коносле появиться FighterInfo {id undefined, userName "Azumiar", lastActive "232131231", health 30, token undefined, …}
+  - через 3 секунды появится форма боя
+Действие:
+  - Нажать кнопку submit
+Результат:
+  - Появиться текст Loading...
+  - В консоле {hit "0", block Array(2)}
+  - Через 3 секунды форма боя снова появится в начальном состоянии
+Действие:
+  - Выбрать Legs
+  - Нажать на кнопку summit
+Результат:
+  - Появиться текст Loading...
+  - В консоле {hit "0", block Array(2)}
+  - Через 3 секунды появится текст о завершении игры Azumiar won!
+  - в консоле Game ended!
+Действие:
+  - Нажать на кнопку Start new game
+Результат:
+ - Появиться текст Loading...
+  - В коносле появиться FighterInfo {id undefined, userName "Azumiar", lastActive "232131231", health 30, token undefined, …}
+  - через 3 секунды появится форма боя
