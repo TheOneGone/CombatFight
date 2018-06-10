@@ -1,7 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
-const port = 3333;
+const port = 3334;
 
 app.use(express.static('static'));
 app.use(express.static('tests'));
