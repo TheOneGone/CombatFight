@@ -1,17 +1,79 @@
-.fight-wrapepr,
-.online-list,
-.chat {
+.background {
+    background: url("files/fon5.jpg");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    
+    margin: 0px;
+}
+.main-div {
+    position: absolute;
+    padding-left: 2%;
+    padding-right: 2%;
+    margin-left: 8%;
+    margin-right: 8%;
+    
+    width: 80%;
+    min-width: 1000px;
+    min-height: 100%;
+    background: linear-gradient(to right, #1b2319ad 0%, rgba(234, 214, 214, 0.774) 2%, rgba(234, 214, 214, 0.774) 98%, #1b2319ad 100%);
+
+    font:16px Arial, Helvetica, sans-serif; 
+}
+.header {
+    width: 100%;
+    height: 80px;
+    background: rgb(11, 27, 22);
+}
+.logo{
+    height: 100%;
+    margin-left: 50px;
+}
+
+.fighter {
+    width: 100%;
+    height: 300px;
+    background: rgba(244, 230, 245, 0.87);
+    box-shadow: 3px 3px 3px 3px #102405;
+    border-radius: 3px;  
+
+    position: relative;
+ 
+}
+.content {
+    display: inline-block; 
+    margin: 2% 2% 2% 2%;
+    width: 70%;
+    height: 80vh;
+    min-height: 600px;
+    
+    position: relative;
+}
+
+.online {
     display: inline-block;
-    border: 2px solid black;
-    margin: 2px;
-    height: 100px;
-    width: 100px;
-}
+    margin: 2% 2% 2% 2%;
+    
+    width: 20%;
+    height: 80vh;
+    min-height: 600px;
+    background: rgba(244, 230, 245, 0.87);
+    box-shadow: 3px 3px 3px 3px #102405;
+    border-radius: 3px;  
+    text-align: center;
+    vertical-align: top;
+    font-family: "BronxBystreetsr";
+    font-size: 20px;
 
-.fight-wrapepr {
-    width: 90%;
 }
 
 .chat {
-    width: 90%;
+    width: 100%;
+    height: 300px;
+    background: rgba(244, 230, 245, 0.87);
+    box-shadow: 3px 3px 3px 3px #102405;
+    border-radius: 3px;  
+
+    margin-top:20px;
+    position: relative;
 }
