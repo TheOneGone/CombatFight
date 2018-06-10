@@ -8,8 +8,8 @@ function Online (node, newFighters) {
     });
 
     this.refresh = function (node, newFighters) {
-        var curFighters = this.fighters;
-        var newArrived = newFighters;
+        var curFighters = this.fighters.slice();
+        var newArrived = newFighters.slice();
 
         newArrived.sort(function (a, b) { return sortFighters(a, b) });
 
@@ -33,13 +33,12 @@ function Online (node, newFighters) {
         console.log(newArrived);
 
         newArrived.forEach(function (item, i) {
-            end = false;
+            var end = true;
             for (var j = 0; j < node.children.length; j++) {
                 if (item.userName <= node.children[j].innerText) {
                     node.insertBefore(item.badge(), node.children[j]);
+                    end = false;
                     break;
-                } else {
-                    end = true;
                 }
             }
             if (end) {
