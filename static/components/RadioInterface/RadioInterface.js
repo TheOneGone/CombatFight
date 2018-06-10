@@ -4,6 +4,7 @@ class RadioInterface{
         for (let field in fields){
             let radioLabel = document.createElement("label");
             radioLabel.setAttribute("for", field);
+            radioLabel.setAttribute("class", "rl");
             radioLabel.innerText = field;
             root.appendChild(radioLabel);
             let radioButton = document.createElement("input");
