@@ -27,10 +27,10 @@ class Fightlog{
             }
         };
         tagfactory(logtag);
-        
+        this.createmassages();
     }
    
-    sendmsg(){
+    createmassages(){
         if(this.tagarr.length!=0){
             function gener_pril(half, timestamp)
             {   
