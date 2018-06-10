@@ -6,6 +6,8 @@ class FightInterface {
         statusPnl.appendChild(userText);
         statusPnl.appendChild(enemyText);
 
+        let gameFinished = false;
+
         let inFight = document.createElement("div");
         let startFightButton = document.createElement("button");
         startFightButton.innerText = "Fight!";
@@ -49,12 +51,14 @@ class FightInterface {
         ];
 
         let fightFormInterface = new FightFormInterface(fightFormDiv, radios, {name: "Submit"}, (submitData) => {
+            if (gameFinished) return;
             fightDiv.innerHTML = "";
             fightDiv.appendChild(loader);
             submitTurnCallback (submitData, (status) => {
                 fightDiv.innerHTML = "";               
                 if (status.type == "finished") {
                     gameEndedCallback();
+                    gameFinished = true;
 
                     let winner = status.user.health <= 0 ? status.enemy : status.user;
 
@@ -75,6 +79,7 @@ class FightInterface {
             fightDiv.innerHTML = "";
             fightDiv.appendChild(loader);
             startFightCallback((status) => {
+                gameFinished = false;
                 fightFormInterface.reset();
                 userText.innerText = status.user.username + ":" + status.user.health;
                 enemyText.innerText = status.enemy.username + ":" + status.enemy.health;
