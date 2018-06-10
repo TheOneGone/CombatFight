@@ -1,0 +1,236 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Fightlog_test</title>
+
+
+</head>
+<body>
+
+    <div class="fightlog1">
+            <p>Здесь когда-то был лог</p>
+    </div>
+
+    <div class="fightlog2">
+            <p>Здесь когда-то был лог</p>
+    </div>
+
+    <div class="fightlog3">
+            <p>Здесь когда-то был лог</p>
+    </div>
+
+    <script src="components\Fightlog\Fightlog.js"></script>
+    <script src="components\FightlogInterFace\FightlogInterFace.js"></script>
+    <script>
+            strstr = `{
+            "id": "j582tS",
+            "status": "progress",
+            "turn_status": true,
+            "results": [ [] ],
+            "you": {
+                "id": "WOBqSz",
+                "username": "admin",
+                "last_active": 1526211881735,
+                "health": 20
+            },
+            "enemy": {
+                "id": "yS8aUb",
+                "username": "dusty",
+                "last_active": 1526212240325,
+                "health": 28
+            }
+        }`;
+         
+        result = JSON.parse(strstr);
+        loghash = new Fightlog(strstr);
+        var fightlog = document.querySelector(".fightlog1");
+        var logmasage = new FightlogInterFace(fightlog);
+        logmasage.refresh(loghash);
+    
+        strstr = `{
+            "id": "j582tS",
+            "status": "progress",
+            "turn_status": true,
+            "results": [ 
+                [
+                {
+                    "origin": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526213697299
+                    },
+                    "target": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213764075
+                    },
+                    "hit": 1,
+                    "blocked": false
+                },
+                {
+                    "origin": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213764075
+                    },
+                    "target": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526213697299
+                    },
+                    "hit": 4,
+                    "blocked": false
+                }
+                ] 
+            ],
+            "you": {
+                "id": "WOBqSz",
+                "username": "admin",
+                "last_active": 1526211881735,
+                "health": 20
+            },
+            "enemy": {
+                "id": "yS8aUb",
+                "username": "dusty",
+                "last_active": 1526212240325,
+                "health": 28
+            }
+        }`;
+    
+        result = JSON.parse(strstr);
+        loghash = new Fightlog(strstr);
+        fightlog = document.querySelector(".fightlog2");
+        logmasage = new FightlogInterFace(fightlog);
+        logmasage.refresh(loghash);
+    
+        strstr = `{
+        "id": "j582tS",
+        "status": "progress",
+        "turn_status": true,
+        "results": [
+            [
+                {
+                    "origin": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526212321426
+                    },
+                    "target": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213320805
+                    },
+                    "hit": 1,
+                    "blocked": false
+                },
+                {
+                    "origin": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526213638265
+                    },
+                    "target": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213592196
+                    },
+                    "hit": 1,
+                    "blocked": false
+                }
+            ],
+            [
+                {
+                    "origin": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213592196
+                    },
+                    "target": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526213638265
+                    },
+                    "hit": 2,
+                    "blocked": true
+                },
+                {
+                    "origin": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526213638265
+                    },
+                    "target": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213592196
+                    },
+                    "hit": 1,
+                    "blocked": false
+                }
+            ],
+            [
+                {
+                    "origin": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526213697299
+                    },
+                    "target": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213764075
+                    },
+                    "hit": 1,
+                    "blocked": false
+                },
+                {
+                    "origin": {
+                        "id": "WOBqSz",
+                        "username": "admin",
+                        "last_active": 1526213764075
+                    },
+                    "target": {
+                        "id": "yS8aUb",
+                        "username": "dusty",
+                        "last_active": 1526213697299
+                    },
+                    "hit": 4,
+                    "blocked": false
+                }
+            ]
+        ],
+        "you": {
+            "id": "WOBqSz",
+            "username": "admin",
+            "last_active": 1526211881735,
+            "health": 20
+        },
+        "enemy": {
+            "id": "yS8aUb",
+            "username": "dusty",
+            "last_active": 1526212240325,
+            "health": 28
+        }
+    }`;
+    
+        
+        result = JSON.parse(strstr);
+        loghash = new Fightlog(strstr);
+        fightlog = document.querySelector(".fightlog3");
+        logmasage = new FightlogInterFace(fightlog);
+        logmasage.refresh(loghash);
+      
+
+        console.log(loghash.pril_atack);
+        console.log(loghash.pril_def);
+        console.log(loghash.tagarr[0]);
+        console.log(loghash.tagarr[0].orig);
+        console.log(loghash.tagarr[0].targ);
+    
+        
+    </script>
+</body>
+</html>
+
