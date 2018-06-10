@@ -2,9 +2,10 @@ class Fightlog{
 
     constructor(str){
         this.tagarr=[];
-        this.pril_o = ["Ловкий ", "Меткий ", "Фартовый ", "Мощьный ", "Расчетливый ", "Зазевавшийся ", "Косой ", "Самонадеянный ", "Сонный ", "Ленивый "];
-        this.pril_t = ["ловкого ", "меткого ", "фартовго ", "мощьнго ", "расчетливого ", "зазевавшегося ", "косого ", "самонадеянному ", "сонного ", "ленивого "];
-        this.hitbox = ["", "Голову ", "Грудь ", "Пояс ", "Ноги "]
+        this.pril_atack = ["Ловкий ", "Меткий ", "Фартовый ", "Мощьный ", "Расчетливый ", "Зазевавшийся ", "Косой ", "Самонадеянный ", "Сонный ", "Ленивый "];
+        this.pril_def = ["ловкого ", "меткого ", "фартовго ", "мощьнго ", "расчетливого ", "зазевавшегося ", "косого ", "самонадеянному ", "сонного ", "ленивого "];
+        this.hitbox = ["", "Голову ", "Грудь ", "Пояс ", "Ноги "];
+        this.massages = [];
         let temp=this;
         let logtag = JSON.parse(str);
         function tagfactory(tag){
@@ -16,6 +17,8 @@ class Fightlog{
                         restag.targ = tag.results[i][j].target.username;
                         restag.hit = tag.results[i][j].hit;
                         restag.block = tag.results[i][j].blocked;
+                        restag.last_time_orig = tag.results[i][j].origin.last_active % 1000;
+                        restag.last_time_targ = tag.results[i][j].target.last_active % 1000;
                         temp.tagarr.push(restag);
                     }    
                 }
@@ -24,27 +27,33 @@ class Fightlog{
             }
         };
         tagfactory(logtag);
+        
     }
    
     sendmsg(){
         if(this.tagarr.length!=0){
-            let thmsg = "";
-            function gR(min, max)
-            {
-                return Math.floor(Math.random() * (max - min) + min);
+            function gener_pril(half, timestamp)
+            {   
+                half = half*5;
+                var seed = timestamp / 1000;
+                return Math.round(seed * (4) + half);
             };
             for(let i = 0; i < this.tagarr.length; i++){
                 let msg='';
+            
                 if (this.tagarr[i].block){
-                    msg = this.pril_o[gR(5,9)] + this.tagarr[i].orig + " не смог попасть в " + this.hitbox[this.tagarr[i].hit]  + " " + this.pril_t[gR(0,4)] + this.tagarr[i].targ + "\nУдар был заблокирован";
+                    msg = this.pril_atack[gener_pril(1, this.tagarr[i].last_time_orig)] + this.tagarr[i].orig + " не смог попасть в " + 
+                    this.hitbox[this.tagarr[i].hit]  + " " + this.pril_def[gener_pril(0, this.tagarr[i].last_time_targ)] + this.tagarr[i].targ + 
+                    "\nУдар был заблокирован";
                 }else{
-                    msg = this.pril_o[gR(0,4)] + this.tagarr[i].orig + " попал в " + this.hitbox[this.tagarr[i].hit]  + " " + this.pril_t[gR(5,9)] + this.tagarr[i].targ + '';
+                    msg = this.pril_atack[gener_pril(0, this.tagarr[i].last_time_orig)] + this.tagarr[i].orig + " попал в " +
+                    this.hitbox[this.tagarr[i].hit]  + " " + this.pril_def[gener_pril(1, this.tagarr[i].last_time_targ)] + this.tagarr[i].targ;
                 }
-                thmsg = thmsg + "\n" + msg;
+                this.massages.push(msg);
             }
-            return thmsg;
+            return this.massages;
         }else{
-            return "Раундов боя еще не было";
+            return ["Раундов боя еще не было"];
         }
     };
     
