@@ -65,7 +65,7 @@
             }).on({}, (res) => {
                 combat_id = res.combat.id;
                 localStorage.setItem("combat_id", combat_id);
-                DataProvider("http://localhost:3334/status?token=" + token + "&combat_id=" + res.combat.id).on({
+                DataProvider("http://localhost:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
                     combat: {
                         enemy: {}
                     }
@@ -78,12 +78,12 @@
             let headers = new Headers();
             headers.append("Content-Type", "application/x-www-form-urlencoded");
 
-            DataProvider("http://localhost:3334/turn", {
+            DataProvider("http://localhost:3333/turn", {
                 method: "POST",
                 headers: headers,
                 body: "token=" + token + "&combat_id=" + combat_id + "&turn=" + JSON.stringify(submitData)
             }).on({}, (res) => {
-                DataProvider("http://localhost:3334/status?token=" + token + "&combat_id=" + res.combat.id).on({
+                DataProvider("http://localhost:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
                     combat: {
                         turn_status: true
                     }
