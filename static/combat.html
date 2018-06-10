@@ -17,5 +17,58 @@
     
         </div>
     </main>
+    <script src="components/ChatInterface/ChatInterface.js"></script>
+    <script src="components/fighter/fighter.js"></script>
+    <script>
+        var chat = document.querySelector(".chat");
+        var msgBlock = document.createElement('div');
+        chat.appendChild(msgBlock);
+        var troubles = document.createElement('div');
+        var ChatInt = new ChatInterface(
+            msgBlock,
+            {
+                userClass: 'messager', 
+                textClass: 'message', 
+                divClass: 'message-div'
+            },
+            function (msg, timestamp) {
+
+                return fetch(
+                    'http://localhost:3333/chat',
+                    {
+                        method: 'POST', 
+                        headers: {
+                            "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                        },
+                        body: 'token=' + localStorage.getItem('token') + '&message=' + msg + '&timestamp=' + timestamp,
+                    })
+                        .then(function (res) {
+                            troubles.innerText = '!!!тут проблемы!!!'
+                            return res.json();
+                        })
+                        .then(function (json) {
+                            if (json.status === 'error') {
+                                troubles.innerText += json.message;
+                                msgBlock.appendChild(troubles);
+                            }
+                        })
+            }
+        );
+        setInterval(function () {
+            var timestamp = ChatInt.getLatestTimestamp();
+            fetch('http://localhost:3333/chat?token=' + localStorage.getItem('token') + (timestamp ? '&timestamp=' + timestamp : ''))
+            .then(function (res) {
+                troubles.innerText = '!!!тут проблемы!!!'
+                return res.json();
+            }).then(function (json) {
+                if (json.status === 'error') {
+                    troubles.innerText += json.message;
+                    msgBlock.appendChild(troubles);
+                }
+
+                ChatInt.add(json.chat);
+            })
+        }, 3000)
+    </script>
 </body>
 </html>
