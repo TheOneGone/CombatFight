@@ -30,7 +30,7 @@
     margin-left: 50px;
 }
 
-.fighter {
+.fight-wraper {
     width: 100%;
     height: 300px;
     background: rgba(244, 230, 245, 0.87);
@@ -88,4 +88,17 @@
     width: 100%;
     height: 100%;
     background: #5fe936;
+}
+
+.online-list a{
+    display: block;
+}
+
+.fighter{
+    color: #444;
+    text-decoration: none;
+}
+
+.fighter:hover {
+    color: #666;
 }

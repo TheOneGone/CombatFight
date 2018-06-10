@@ -19,9 +19,12 @@
         </div>
 
         <div class="online-list online">
+
         </div>
     </div>
 
+    <script src="components/online/online.js"></script>
+    <script src="components/config/config.js"></script>
     <script src="components/DataProvider/DataProvider.js"></script>
     <script src="components/fighter/fighter.js"></script>
     <script src="components/RadioInterface/RadioInterface.js"></script>
@@ -31,7 +34,6 @@
     <script src="components/fighter/fighter.js"></script>
     <script>
 
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!      fight      !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
         let token = localStorage.getItem("token");
         if (!token) {
@@ -109,7 +111,27 @@
 
         });
 
-        //!!!!!!!!!!!!!!!!!!      chat     !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        var fightlog = document.getElementsByClassName('online-list')[0];
+        function refreshOnline () {
+            var figters = [];
+
+            fetch(window.config.serverURL + "online")
+                .then(function (response) {
+                    return response.json();
+                })
+                .then(function (data) {
+                    fighters = data.users.map(function (elem) {
+                        return new FighterInfo(elem);
+                    });
+                    fightlog.innerHTML = "";
+                    Online(fightlog, fighters);
+                })
+                .catch(alert);
+        }
+        
+        refreshOnline();
+        setInterval(refreshOnline, 3000);
 
         var chat = document.querySelector(".chat");
         var troubles = document.createElement('div');
