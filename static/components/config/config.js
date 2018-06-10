@@ -1,5 +1,5 @@
 'use strict';
 
 window.config = {
-  serverURL: 'http://localhost:3333/',
+  serverURL: 'http://dev2.shleyko.ru:3333/',
 } 
