@@ -1,38 +1,42 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="components/RadioInterface/FightFormInterface.css">
 </head>
 <body>
-    <form class="fight-form"></form>
-    <script src="components/RadioInterface/radioInterface.js"></script>
-    <script src="components/FightFormInterface/FightFormInterface.js"></script>
-    <script>
-        let formDOM = document.querySelector(".fight-form");
+    <div class="fighter fight-wrapepr">
+        <form class="fight-form"></form>
+        <script src="components/RadioInterface/RadioInterface.js"></script>
+        <script src="components/FightFormInterface/FightFormInterface.js"></script>
+         <script>
+            let formDOM = document.querySelector(".fight-form");
 
-        let radios = [
-            {
-                name: "hit",
-                fields: {
+            let radios = [
+                {
+                    name: "hit",
+                    fields: {
                     "Head": 0,
                     "Body": 1,
                     "Torso": 2,
                     "Legs": 3
                 }
-            },
-            {
-                name: "block",
-                fields: {
-                    "Head, Body": 0,
-                    "Body, Torso": 1,
-                    "Torso, Legs": 2,
-                    "Legs, Head": 3
+                },
+                {
+                    name: "block",
+                    fields: {
+                        "Head-Body": 0,
+                        "Body-Torso": 1,
+                        "Torso-Legs": 2,
+                        "Legs-Head": 3
+                    }
                 }
-            }
-        ];
+                ];
+                    
 
-        let fightForm = new FightFormInterface(formDOM, radios, { name: "Send" }, (submitData) => {
-            alert("Hit: " + submitData.hit + "\nBlock: " + submitData.block[0] + ", " + submitData.block[1]);
-        });
-    </script>
+            let fightForm = new FightFormInterface(formDOM, radios, { name: "Отправить" }, (submitData) => {
+                alert("Hit: " + submitData.hit + "\nBlock: " + submitData.block[0] + ", " + submitData.block[1]);
+            });
+        </script>
+    </div>
 </body>
 </html>

@@ -1,0 +1,78 @@
+@font-face {
+    font-family: "BronxBystreetsr"; 
+    src: url(10853.otf) format("opentype");
+    font-style: normal; 
+    font-weight: normal; 
+} 
+@font-face {
+    font-family: "zero"; 
+    src: url(11183.otf) format("opentype");
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+
+.fighter {
+    width: 100%;
+    height: 300px;
+    background: rgba(244, 230, 245, 0.87);
+    box-shadow: 3px 3px 3px 3px #102405;
+    border-radius: 3px;  
+
+    position: relative;
+ 
+}
+
+.but{
+
+    width: 100%;
+    padding:11px 32px; 
+    border:solid 1px #082908fb; 
+    
+    position:absolute;
+    bottom:0px;
+    left:0px;
+    
+    background-color:#113809; 
+    background-image: -moz-linear-gradient(top, #113809 0%, #102405 100%); 
+    background-image: -webkit-linear-gradient(top, #113809 0%, #102405 100%); 
+    background-image: -o-linear-gradient(top, #113809 0%, #102405 100%); 
+    background-image: -ms-linear-gradient(top, #113809 0% ,#102405 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#102405', endColorstr='#102405',GradientType=0 ); 
+    background-image: linear-gradient(top, #113809 0% ,#102405 100%);   
+    -webkit-box-shadow:0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
+    -moz-box-shadow: 0px 0px 9px #113317,  inset 0px 0px 13px #d9d0d0;  
+    box-shadow:0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0;  
+    
+    text-decoration:none; 
+    text-align:center; 
+    color:#acacac; 
+    font-family: "BronxBystreetsr";
+    font-size: 20px;
+}
+
+.rl{
+    color: rgb(8, 34, 13);
+    font-size: 20px;
+    font-family: "zero", sans-serif;
+}
+
+
+.radio-div-0{
+    width: 100px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    left: 20%;
+    margin-top: 50px;
+}
+.radio-div-1{
+    width: 120px;
+    height: 100%;
+    display: inline-block;
+    text-align: center;
+    position: absolute;
+    left: 60%;
+    margin-top: 50px;
+}

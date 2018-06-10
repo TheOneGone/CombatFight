@@ -1,0 +1,18 @@
+@font-face {
+    font-family: "BronxBystreetsr"; 
+    src: url("files/10853.otf") format("opentype");
+    font-style: normal; 
+    font-weight: normal; 
+} 
+@font-face {
+    font-family: "zero"; 
+    src: url("files/11183.otf") format("opentype");
+    font-style: normal; 
+    font-weight: normal; 
+} 
+
+.rl{
+    color: rgb(8, 34, 13);
+    font-size: 20px;
+    font-family: "zero", sans-serif;
+}
