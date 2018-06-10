@@ -1,0 +1,48 @@
+
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Fightlog_test</title>
+
+
+</head>
+<body>
+
+    <div class="fightlog2">
+            <p>Online</p>
+    </div>
+
+
+    
+   
+    <script src="components/online/online.js"></script>
+    <script src="components/fighter/fighter.js"></script>
+    <script src="components/config/config.js"></script>
+    <script>
+    var fightlog = document.getElementsByClassName('fightlog2')[0];
+    var figters = [];
+
+    fetch(serverURL + "online")
+    .then(function(response) {
+        alert(response.headers.get('Content-Type')); // application/json; charset=utf-8
+        alert(response.status); // 200
+
+        return response.json();
+    })
+    .then(function(data) {
+        alert(data.users); // iliakan
+        console.log(data.users);
+        fighters = data.users.map(function(elem){
+            return new FighterInfo(elem);
+        });
+
+        console.log(fighters);
+        Online(fightlog, fighters);
+    })
+    .catch( alert );
+        
+    </script>
+</body>
+</html>
+
