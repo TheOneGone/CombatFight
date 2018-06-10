@@ -2,7 +2,6 @@ class ChatInterface {
     constructor (node, styles) {
         this.styles = styles;
         this.node = node;
-        this.latestTimestamp = messages[messages.length - 1].timestamp;
     }
 
     add (messages) {
@@ -21,6 +20,7 @@ class ChatInterface {
             messageDiv.appendChild(messageText);
             this.node.appendChild(messageDiv);
         }
+        this.latestTimestamp = messages[messages.length - 1].timestamp;
     }
 
     getLatestTimestamp () {
