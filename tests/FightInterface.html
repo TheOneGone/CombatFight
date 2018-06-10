@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+    <div class="fight-pnl"></div>
+
+    <script src="components/fighter/fighter.js"></script>
+    <script src="components//RadioInterface/RadioInterface.js"></script>
+    <script src="components//FightFormInterface/FightFormInterface.js"></script>
+    <script src="components/FightInterface/FightInterface.js"></script>
+    <script>
+        let fightPnl = document.querySelector(".fight-pnl");
+
+        let user = {
+            username: "Azumiar",
+            last_active: "232131231",
+            health: 30
+        } 
+
+        let enemy = {
+            username: "Orc",
+            last_active: "232131231",
+            health: 40
+        }
+
+        let fighter = new FighterInfo(user);
+        let orc = new FighterInfo(enemy);
+
+        let fightInterface = new FightInterface(fightPnl, fighter, (fighter, next) => {
+            console.log(fighter);
+            setTimeout(() => {
+                next({enemy: orc, user: fighter});
+            }, 3000);
+        }, (submitData, next) => {
+            console.log(submitData);
+            setTimeout(() => {
+                next({type: submitData.hit != 3 ? "inGame" : "finished", enemy: orc, user: fighter, winner: fighter});
+            }, 3000);
+        }, () => {
+            console.log("Game ended!");
+        });
+    </script>
+</body>
+</html>
