@@ -2,16 +2,17 @@ class FightFormInterface{
     constructor(formDOM, radios, submitButtonInfo, onSubmit){
         this.radioIntrefaces = [];
         for(let radio of radios){
-            let radioInterface = new RadioInterface(radio.name, radio.fields, formDOM, radio.className);
+            let buttonsDiv = document.createElement("div");
+            buttonsDiv.classList.add("radio-buttons");
+            formDOM.appendChild(buttonsDiv);
+            let radioInterface = new RadioInterface(radio.name, radio.fields, buttonsDiv, radio.className);
             this.radioIntrefaces.push(radioInterface);
         }
-
         let submitButton = document.createElement("input");
         submitButton.setAttribute("type", "submit");
         submitButton.setAttribute("value", submitButtonInfo.name);
         submitButton.setAttribute("class", submitButtonInfo.className);
         formDOM.appendChild(submitButton);
-        
         formDOM.onsubmit = (e) => {
             e.preventDefault();
             let submitData = {};
