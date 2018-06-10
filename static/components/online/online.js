@@ -21,7 +21,6 @@ function Online (node, newFighters) {
                 i--;
             }
         }
-        console.log(curFighters);
 
         var curFightersId = curFighters.map(function (val) {return val.id;});
         for (var i = 0; i < newArrived.length; i++) {
@@ -30,7 +29,6 @@ function Online (node, newFighters) {
                 i--;
             }
         };
-        console.log(newArrived);
 
         newArrived.forEach(function (item, i) {
             var end = true;
