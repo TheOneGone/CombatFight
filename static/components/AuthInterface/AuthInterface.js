@@ -13,7 +13,7 @@ class AuthInterface {
     constructor (formDOM, loginButtonInfo, notMeButtonInfo, registerButtonInfo, inputInfo, loginCallback, registerCallback, successCallback) {
         let username = localStorage.getItem("username");
         let password = localStorage.getItem("password");
-        
+                
         let errors = document.createElement("div");
         errors.setAttribute("class", "error-pnl");
         errors.style.visibility = "hidden";
@@ -72,13 +72,8 @@ class AuthInterface {
 
         function setButtonClickHandler(button, callback){
             button.onclick = () => {
-                let username = localStorage.getItem("username");
-                let password = localStorage.getItem("password");
-
-                if(!username || !password){
-                    username = usernameInput.value;
-                    password = passwordInput.value;
-                }
+                let username = usernameInput.value || localStorage.getItem('username');
+                let password = passwordInput.value || localStorage.getItem('password');
 
                 let submitData = {
                     username: username,
@@ -110,6 +105,7 @@ class AuthInterface {
 
         formDOM.appendChild(errors);
         if (username && password) {
+            formDOM.appendChild(document.createTextNode(username));
             formDOM.appendChild(loginButton);
             formDOM.appendChild(notMeButton);
         } else {
