@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "hermione",
+    "selenium-start": "concurrently \"nodemon server.js\" \"selenium-standalone start\""
   },
   "author": "",
   "license": "ISC",
@@ -15,8 +16,10 @@
   },
   "devDependencies": {
     "chai": "^4.1.2",
+    "concurrently": "^3.5.1",
     "gemini": "^5.7.1",
     "hermione": "^0.69.0",
-    "nodemon": "^1.17.4"
+    "nodemon": "^1.17.4",
+    "selenium-standalone": "^6.9.0"
   }
 }
