@@ -1,0 +1,17 @@
+.fight-wrapepr,
+.online-list,
+.chat {
+    display: inline-block;
+    border: 2px solid black;
+    margin: 2px;
+    height: 100px;
+    width: 100px;
+}
+
+.fight-wrapepr {
+    width: 90%;
+}
+
+.chat {
+    width: 90%;
+}
