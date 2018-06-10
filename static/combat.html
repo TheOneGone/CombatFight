@@ -53,6 +53,8 @@
                         status: "finished"
                     }
                 }, (res) => {
+                    localStorage.removeItem("combat_id");
+                    combat_id = null;
                     next({ type: res.combat.status, user: res.combat.you, enemy: res.combat.enemy });
                 });
                 return;
@@ -70,7 +72,6 @@
                         enemy: {}
                     }
                 }, (res) => {
-                    localStorage.removeItem("combat_id");
                     next({ user: res.combat.you, enemy: res.combat.enemy });
                 });
             });
@@ -95,6 +96,7 @@
                     }
                 }, (res) => {
                     localStorage.removeItem("combat_id");
+                    combat_id = null;
                     next({ type: res.combat.status, user: res.combat.you, enemy: res.combat.enemy });
                 });
             });
