@@ -42,7 +42,7 @@
             headers.append("Content-Type", "application/x-www-form-urlencoded");
 
             if (combat_id) {
-                DataProvider("http://localhost:3334/status?token=" + token + "&combat_id=" + combat_id).on({
+                DataProvider("http://localhost:3333/status?token=" + token + "&combat_id=" + combat_id).on({
                     combat: {
                         turn_status: true
                     }
@@ -58,7 +58,7 @@
                 return;
             }
 
-            DataProvider("http://localhost:3334/fight", {
+            DataProvider("http://localhost:3333/fight", {
                 method: "POST",
                 body: "token=" + token,
                 headers: headers
