@@ -35,7 +35,7 @@
 
         let token = localStorage.getItem("token");
         if (!token) {
-            window.location = "dev2.shleyko.ru:3334/login.html"
+            window.location = "http://localhost:3334/login.html"
         }
 
         let fightDiv = document.querySelector(".fight-wraper");
@@ -47,7 +47,7 @@
             headers.append("Content-Type", "application/x-www-form-urlencoded");
 
             if (combat_id) {
-                DataProvider("dev2.shleyko.ru:3333/status?token=" + token + "&combat_id=" + combat_id).on({
+                DataProvider("http://dev2.shleyko.ru:3333/status?token=" + token + "&combat_id=" + combat_id).on({
                     combat: {
                         turn_status: true
                     }
@@ -65,14 +65,14 @@
                 return;
             }
 
-            DataProvider("dev2.shleyko.ru:3333/fight", {
+            DataProvider("http://dev2.shleyko.ru:3333/fight", {
                 method: "POST",
                 body: "token=" + token,
                 headers: headers
             }).on({}, (res) => {
                 combat_id = res.combat.id;
                 localStorage.setItem("combat_id", combat_id);
-                DataProvider("dev2.shleyko.ru:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
+                DataProvider("http://dev2.shleyko.ru:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
                     combat: {
                         enemy: {}
                     }
@@ -84,12 +84,12 @@
             let headers = new Headers();
             headers.append("Content-Type", "application/x-www-form-urlencoded");
 
-            DataProvider("dev2.shleyko.ru:3333/turn", {
+            DataProvider("http://dev2.shleyko.ru:3333/turn", {
                 method: "POST",
                 headers: headers,
                 body: "token=" + token + "&combat_id=" + combat_id + "&turn=" + JSON.stringify(submitData)
             }).on({}, (res) => {
-                DataProvider("dev2.shleyko.ru:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
+                DataProvider("http://dev2.shleyko.ru:3333/status?token=" + token + "&combat_id=" + res.combat.id).on({
                     combat: {
                         turn_status: true
                     }
@@ -123,7 +123,7 @@
             function (msg, timestamp) {
 
                 return fetch(
-                    'dev2.shleyko.ru:3333/chat',
+                    'http://dev2.shleyko.ru:3333/chat',
                     {
                         method: 'POST', 
                         headers: {
@@ -145,7 +145,7 @@
         );
         setInterval(function () {
             var timestamp = ChatInt.getLatestTimestamp();
-            fetch('dev2.shleyko.ru:3333/chat?token=' + localStorage.getItem('token') + (timestamp ? '&timestamp=' + timestamp : ''))
+            fetch('http://dev2.shleyko.ru:3333/chat?token=' + localStorage.getItem('token') + (timestamp ? '&timestamp=' + timestamp : ''))
             .then(function (res) {
                 troubles.innerText = '!!!тут проблемы!!!'
                 return res.json();
