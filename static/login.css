@@ -11,87 +11,40 @@
     font-weight: normal; 
 } 
 
-.background {
-    background: url("files/fon5.jpg");
-    background-size: 100% 100%;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+.background { 
+    background: url("files/fon5.jpg"); 
+    background-size: 100% 100%; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
     
-    margin: 0px;
-}
-.main-div {
-    position: absolute;
-    padding-left: 2%;
-    padding-right: 2%;
-    margin-left: 8%;
-    margin-right: 8%;
-    
-    width: 80%;
-    min-width: 1000px;
-    min-height: 100%;
-    background: linear-gradient(to right, #1b2319ad 0%, rgba(234, 214, 214, 0.774) 2%, rgba(234, 214, 214, 0.774) 98%, #1b2319ad 100%);
+    margin: 0px; 
+} 
 
+.header { 
+    width: 100%; 
+    height: 80px; 
+    background: rgb(11, 27, 22); 
+}
+.logo{ 
+    height: 100%; 
+    margin-left: 50px; 
+}  
+.main-div { 
+    position: absolute; 
+    padding-left: 2%; 
+    padding-right: 2%; 
+    margin-left: 8%; 
+    margin-right: 8%; 
+    
+    width: 80%; 
+    min-width: 1000px; 
+    min-height: 100%; 
+    background: linear-gradient(to right, #1b2319ad 0%, rgba(234, 214, 214, 0.774) 2%, rgba(234, 214, 214, 0.774) 98%, #1b2319ad 100%); 
+    
     font:16px Arial, Helvetica, sans-serif; 
-}
-.header {
-    width: 100%;
-    height: 80px;
-    background: rgb(11, 27, 22);
-}
-.logo{
-    height: 100%;
-    margin-left: 50px;
-}
+} 
 
-.fighter {
-    width: 100%;
-    height: 300px;
-    background: rgba(244, 230, 245, 0.87);
-    box-shadow: 3px 3px 3px 3px #102405;
-    border-radius: 3px;  
-
-    position: relative;
- 
-}
-.content {
-    display: inline-block; 
-    margin: 2% 2% 2% 2%;
-    width: 70%;
-    height: 80vh;
-    min-height: 600px;
-    
-    position: relative;
-}
-
-.online {
-    display: inline-block;
-    margin: 2% 2% 2% 2%;
-    
-    width: 20%;
-    height: 80vh;
-    min-height: 600px;
-    background: rgba(244, 230, 245, 0.87);
-    box-shadow: 3px 3px 3px 3px #102405;
-    border-radius: 3px;  
-    text-align: center;
-    vertical-align: top;
-    font-family: "BronxBystreetsr";
-    font-size: 20px;
-
-}
-
-.chat {
-    width: 100%;
-    height: 300px;
-    background: rgba(244, 230, 245, 0.87);
-    box-shadow: 3px 3px 3px 3px #102405;
-    border-radius: 3px;  
-
-    margin-top:20px;
-    position: relative;
-}
-
-.start-button{
+.login-button{
     display: inline-block;
 
     width: 25%; 
@@ -99,8 +52,8 @@
     border:solid 1px #082908fb; 
 
     position:absolute; 
-    top: 40%;
-    left: 38%;
+    bottom:20%; 
+    left:15%; 
 
     border-radius: 3px 3px 3px 3px;
 
@@ -120,65 +73,88 @@
     color:#acacac; 
     font-family: "BronxBystreetsr"; 
     font-size: 20px; 
-
 }
 
-.fighter > div:nth-child(1){
-    width: 100%;
-    height: 100%;
-}
+.registr-button{
+    display: inline-block;
 
-.loading{
-    display: inline-block; 
+    width: 25%; 
+    padding:11px 32px; 
+    border:solid 1px #082908fb; 
 
     position:absolute; 
-    top: 40%;
+    bottom:20%; 
+    right:15%; 
 
+    border-radius: 3px 3px 3px 3px;
+
+    background-color:#113809; 
+    background-image: -moz-linear-gradient(top, #113809 0%, #102405 100%); 
+    background-image: -webkit-linear-gradient(top, #113809 0%, #102405 100%); 
+    background-image: -o-linear-gradient(top, #113809 0%, #102405 100%); 
+    background-image: -ms-linear-gradient(top, #113809 0% ,#102405 100%); 
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#102405', endColorstr='#102405',GradientType=0 ); 
+    background-image: linear-gradient(top, #113809 0% ,#102405 100%); 
+    -webkit-box-shadow:0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
+    -moz-box-shadow: 0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
+    box-shadow:0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
+
+    text-decoration:none; 
     text-align:center; 
-    color:#102405; 
+    color:#acacac; 
+    font-family: "BronxBystreetsr"; 
+    font-size: 20px; 
+}
+
+.auth{
+    width: 100
+}
+
+.username-form{
     font-family: "zero"; 
-    font-size: 20px; 
+    font-size: 20px;
 }
 
-.start-new-button{
-    display: inline-block;
+.password-form{
+    font-family: "zero"; 
+    font-size: 20px;
+}
 
-    width: 25%; 
-    padding:11px 32px; 
+.inp1{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+    border-radius: 3px 3px 3px 3px;    
+
+    background-color:#d5ebd1;
+    box-shadow:0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
     border:solid 1px #082908fb; 
+    height: 30px;
+    width: 100%;
 
-    position:absolute; 
-    bottom: 0px;
-    left: 38%;
+    text-align: center;
+}
+.inp2{
+
+    margin-top: 10px;
+    margin-bottom: 10px;
 
     border-radius: 3px 3px 3px 3px;
 
-    background-color:#113809; 
-    background-image: -moz-linear-gradient(top, #113809 0%, #102405 100%); 
-    background-image: -webkit-linear-gradient(top, #113809 0%, #102405 100%); 
-    background-image: -o-linear-gradient(top, #113809 0%, #102405 100%); 
-    background-image: -ms-linear-gradient(top, #113809 0% ,#102405 100%); 
-    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#102405', endColorstr='#102405',GradientType=0 ); 
-    background-image: linear-gradient(top, #113809 0% ,#102405 100%); 
-    -webkit-box-shadow:0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
-    -moz-box-shadow: 0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
+    background-color:#d5ebd1;
     box-shadow:0px 0px 9px #113317, inset 0px 0px 13px #d9d0d0; 
-
-    text-decoration:none; 
-    text-align:center; 
-    color:#acacac; 
-    font-family: "BronxBystreetsr"; 
-    font-size: 20px; 
-}
-
-.health-bar-holder {
-    width: 300px;
+    border:solid 1px #082908fb; 
     height: 30px;
-    border: 1px solid black;
+    width: 100%;
+
+    text-align: center;
+
 }
 
-.health-bar {
-    width: 100%;
-    height: 100%;
-    background: #5fe936;
+.position-inp{
+    margin-top: 10%;
+    width: 30%;
+    margin-left: 35%;
+    margin-right: 35%;
 }
