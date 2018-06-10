@@ -69,7 +69,8 @@
 
                     // console.log(submitData);
 
-                    lastPassword = submitData.password;
+                lastPassword = submitData.password;
+                let userFromJSON;
 
                     fetch(config.serverURL + 'register',
                         {
@@ -86,13 +87,19 @@
                                 rej([response.status + ': ' + response.statusText]);
                             }
 
-                            return response.json();
-                        }).then(function (fromJSON) {
-                            // console.log('fromJSON:', fromJSON);
-                            res(fromJSON.user);
-                        });
-                });
-            }
+                        return response.json();
+                    }).then(function (fromJSON) {
+
+                        // alert('fromJSON.user.token: ' + fromJSON.user.token);
+                        userFromJSON = fromJSON.user;
+                        // alert('fromJSON:' + fromJSON);
+
+                        return fetch(config.serverURL + 'whoami?token=' + fromJSON.user.token, { method: 'GET' });
+                    }).then(function () {
+                        res(userFromJSON);
+                    });
+            });
+        }
 
             function successCallback(user) {
                 console.log("Successefully logged in or registered");
