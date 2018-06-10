@@ -1,6 +1,10 @@
 function FighterInfo (userInfoJSON) {
- 
-    userInfo = JSON.parse(userInfoJSON);
+    
+    if (typeof userInfoJSON == "string") {
+        userInfo = JSON.parse(userInfoJSON);
+    } else {
+        userInfo = userInfoJSON;
+    }
  
     this.id = userInfo.id;
     this.userName =  userInfo.username;
