@@ -5,15 +5,12 @@ class RadioInterface{
             let radioLabel = document.createElement("label");
             radioLabel.setAttribute("for", field);
             radioLabel.innerText = field;
-            radioLabel.setAttribute("class", "rl");
             root.appendChild(radioLabel);
-            
             let radioButton = document.createElement("input");
             radioButton.setAttribute("type", "radio");
             radioButton.setAttribute("name", name);
             radioButton.setAttribute("id", field);
-            radioButton.setAttribute("class", "rb");
-            if (className) {
+            if(className){
                 radioButton.setAttribute("class", className);
             }
             radioButton.setAttribute("value", fields[field]);
@@ -29,5 +26,10 @@ class RadioInterface{
                 return button.value;
             }
         }
+        return undefined;
+    }
+
+    reset(){
+        this.buttons[0].checked = true;
     }
 }
